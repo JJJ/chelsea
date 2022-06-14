@@ -46,7 +46,6 @@ By default, Chelsea includes support for:
 
 * parsing requests
 * handling 404's
-* WPDB
 * users
 * user roles & capabilities
 * user sessions
@@ -56,4 +55,20 @@ By default, Chelsea includes support for:
 
 You are encouraged to fork/copy the contents of `chelsea.php`, modify them, and explore what is possible.
 
-Happy booting!
+## Caveats
+
+Chelsea currently includes `wp-load.php` with `SHORTINIT` set. This means you are still stuck with *some* low-level configurations & features, like:
+* The `$wpdb` global via the wpdb interface class
+* error_reporting
+* object & output caching
+* fatal error recovery
+* maintenance mode
+* debug mode
+* formatting functions
+* a registered shutdown function
+
+If you do not want these things either, you will need to steal & strip what you want from `wp-load.php`, `wp-config.php` and `wp-settings.php`, and bolt it all directly into `chelsea.php`. This is totally doable, even though it feels a little weird. Perhaps a future version of Chelsea will do this, too!
+
+## Oh yeah
+
+Happy booting! 💜
