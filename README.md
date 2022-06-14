@@ -40,6 +40,10 @@ Now, when NGINX sees someone try to visit `example.org/app` it will try to serve
 
 You want all the power and flexibility of WordPress, but you do not want the entire set of user-facing features that it comes bundled with.
 
+You are familiar with WordPress, and like it, and would totally build your next big thing with it – if only it weren't so bloated or slow or old or whatever other bad things people say about it.
+
+With Chelsea, now you can! 🥫
+
 ## Includes
 
 By default, Chelsea includes support for:
