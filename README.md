@@ -2,19 +2,21 @@
 
 A versatile, custom WordPress bootloader using `SHORTINIT`.
 
+----
+
+`SHORTINIT` is a PHP constant that WordPress looks for *relatively* early inside of `wp-settings.php`. When defined as truthy, WordPress will `return false` before the majority of files inside of `wp-includes` are `require`d and after `shutdown_action_hook()` is registered as a shutdown function.
+
+This is awesome if you only want to load *some* of a WordPress installation while skipping things like: plugins, themes, posts, taxonomies, comments, localization, blocks, sitemaps, REST API, etc...
+
 ## Usage
 
-1. Copy the contents of `chelsea.php` into the root directory of your WordPress installation, into a file named whatever you want it to be.
-1. Customize this fancy new file of yours until you've figured out how to get it to do what you want it to do
+1. Copy `chelsea.php` into the root directory of your WordPress installation, naming it whatever you prefer.
+1. Customize this fancy new file until it is doing what you want it to do
 1. 💗
-
-## What
-
-Use this if you only want to load *some* of a WordPress installation while skipping things like: plugins, themes, posts, taxonomies, comments, etc...
 
 ## History
 
-WordPress traditionally uses the `index.php` in its root directory as the primary point of entry for server software like NGINX to route requests to: 
+WordPress *traditionally* uses `index.php` in the root directory as the primary point of entry for server software like NGINX to route requests to:
 
 ```nginx
 location / {
@@ -22,7 +24,7 @@ location / {
 }
 ```
 
-A few other files do get accessed directly: `wp-cron.php`, `wp-login.php`, `xmlrpc.php`, etc... and Chelsea is conceptually similar.
+(Other files get accessed directly: `wp-cron.php`, `wp-login.php`, `xmlrpc.php`, etc... and Chelsea is conceptually similar.)
 
 ## How
 
@@ -34,7 +36,7 @@ location /app {
 }
 ```
 
-Now, when NGINX sees someone try to visit `example.org/app` it will try to serve that request using `chelsea.php` as the point of entry, and pass along with it any of the arguments in the query string. Neat!
+When NGINX sees someone visiting `example.org/app` it will try to serve that request using `chelsea.php` as the point of entry and pass along with it any of the arguments in the query string. Neat!
 
 ## Why
 
@@ -42,7 +44,7 @@ You want all the power and flexibility of WordPress, but you do not want the ent
 
 You are familiar with WordPress, and like it, and would totally build your next big thing with it – if only it weren't so bloated or slow or old or whatever other bad things people say about it.
 
-With Chelsea, now you can! 🥫
+With Chelsea, now you can! 🥫 `@see: can`
 
 ## Includes
 
@@ -71,8 +73,11 @@ Chelsea currently includes `wp-load.php` with `SHORTINIT` set. This means you ar
 * formatting functions
 * a registered shutdown function
 
-If you do not want these things either, you will need to steal & strip what you want from `wp-load.php`, `wp-config.php` and `wp-settings.php`, and bolt it all directly into `chelsea.php`. This is totally doable, even though it feels a little weird. Perhaps a future version of Chelsea will do this, too!
+If you do not want these things either, you will need to steal & strip what you want from `wp-load.php`, `wp-config.php` and `wp-settings.php`, and bolt it all directly into `chelsea.php`. This is totally doable, even though it feels a little weird.
+*(Perhaps a future version of Chelsea could do this, too?)*
 
 ## Oh yeah
 
-Happy booting! 💜
+Issues and pull requests encouraged. Thank you for reading this far.
+
+Happy booting 💜
