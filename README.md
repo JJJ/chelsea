@@ -64,17 +64,21 @@ You are encouraged to fork/copy the contents of `chelsea.php`, modify them, and 
 ## Caveats
 
 Chelsea currently includes `wp-load.php` with `SHORTINIT` set. This means you are still stuck with *some* low-level configurations & features, like:
-* The `$wpdb` global via the wpdb interface class
+* `wp-config.php` is included if it exists, and errors if it cannot be found by `wp-load.php`
+* The `$wpdb` global via the wpdb interface class, as well as the connection settings inside `wp-config.php`
+* Authentication keys and salts in `wp-config.php`
+* Any custom ini settings or constants in `wp-config.php`
 * error_reporting
 * object & output caching
 * fatal error recovery
 * maintenance mode
 * debug mode
-* formatting functions
-* a registered shutdown function
+* formatting functions via `formatting.php`
+* a registered shutdown function that invokes the `shutdown` action and calls `wp_cache_close()` for you
 
-If you do not want these things either, you will need to steal & strip what you want from `wp-load.php`, `wp-config.php` and `wp-settings.php`, and bolt it all directly into `chelsea.php`. This is totally doable, even though it feels a little weird.
-*(Perhaps a future version of Chelsea could do this, too?)*
+If you do not want these things either, you will need to steal & strip what you want from `wp-load.php`, `wp-config.php` and `wp-settings.php` like it's a 90's Honda Civic, and bolt all the good stuff directly into `chelsea.php`.
+
+This is totally doable, even though it feels a little weird. *(Perhaps a future version of Chelsea could do this, too?)*
 
 ## Oh yeah
 
